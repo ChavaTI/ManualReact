@@ -98,3 +98,36 @@ class App extends React.Component {
 export default App;
 ```
 
+## Crear un componente
+
+Para crear un compñonente nuievop se recomienda crear dentro del sirectorio src un directorio llamado componentes de esta manera
+src/componentes y otro para los css src/css donde despues seran importados y exportados segun sea el caso.
+
+Se recomienda que un compionete se le llame con la primera letra mayuscula por ejemplo "PrimerComponente.js"
+
+PrimerComponente.js
+
+``` JavaScript
+import React from 'react';
+
+class PrimerComponente extends React.Component{
+    render(){
+        return <p>Hola mundo</p>
+    }
+}
+
+export default PrimerComponente;
+´´´
+
+index.js
+
+´´´ JavaScript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PrimerComponente from 'componentes/PrimerComponente';
+import registerServiceWorker from './registerServiceWorker'
+
+ReactDOM.render(<PrimerComponete />,document.getElementById('root'));
+registerServiceWorker();
+´´´
+
