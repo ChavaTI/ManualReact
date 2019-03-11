@@ -117,11 +117,11 @@ class PrimerComponente extends React.Component{
 }
 
 export default PrimerComponente;
-´´´
+```
 
 index.js
 
-´´´ JavaScript
+``` JavaScript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PrimerComponente from 'componentes/PrimerComponente';
@@ -129,5 +129,121 @@ import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(<PrimerComponete />,document.getElementById('root'));
 registerServiceWorker();
-´´´
+```
+
+## Tipos de componentes
+
+* Te permite separar tu codigo.
+* Son como funciones en JavaScript
+* Puedes pasarle datos por medio de lago llamado props
+
+### Class Component
+
+``` JavaScript
+class PrimerComponente extends React.Component{
+    render(){
+        return <p>Hola mundo</p>
+    }
+}
+```
+
+### Functional Component
+
+``` JavaScript
+const App = (props) => (
+    <p>Hola mundo</p>
+);
+```
+
+#### Ventajas
+
+* La cantidad de codigo es menos y es mas facil de leer
+* Facil de probar
+* No puedes usar this
+
+#### Desventajas
+
+* No puedes usar los metodos del ciclo de vida
+* No tiene State
+* No puedes usar refs
+* No puedes usar formularios
+
+## Componentes dentro de componentes
+
+Los componentes pueden integrarse a componentes princiales ode mayor rango por ejemplo.
+
+index.js
+
+``` JavaScript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from 'componentes/App';
+import registerServiceWorker from './registerServiceWorker'
+
+ReactDOM.render(<App />,document.getElementById('root'));
+registerServiceWorker();
+```
+
+App.js
+
+``` JavaScript
+import React from 'react';
+import Header from './Header';
+import Productos from './Productos';
+import Footer from './Footer';
+
+class App extends React.Component{
+    render(){
+        return (
+            <div>
+                <Header />
+                <Productos />
+                <Footer />
+            </div>
+        )
+    }
+}
+
+export default PrimerComponente;
+```
+
+Header.js
+
+``` JavaScript
+const Header = () => (
+    <header>
+        <h1>Bienvenido a la tienda virtual</h1>
+    </header>
+);
+```
+
+Productos.js
+
+``` JavaScript
+import React from 'react';
+
+class Productos extends React.Component{
+    render(){
+        return (
+            <div>
+                <ul>
+                    <li>Computadoras</li>
+                    <li>Servidores</li>
+                    <li>Gateways</li>
+                </ul>
+            </div>
+        )
+    }
+}
+
+export default PrimerComponente;
+```
+
+``` JavaScript
+const Footer = () => (
+    <footer>
+        <p>Todos los derechos reservados &copy;</p>
+    </footer>
+);
+```
 
