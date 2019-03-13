@@ -350,3 +350,41 @@ class Producto extends React.Component{
 export default Producto;
 ```
 
+## State y metodos de ciclo de vida
+
+El state es el que se encarga de administra los cambios en los datos en la aplicacion y se encarga de cambiarlos en cada uno de los componentes y en el html
+
+App.js
+
+``` JavaScript
+import React from 'react';
+import Header from './Header';
+import Productos from './Productos';
+import Footer from './Footer';
+
+class App extends React.Component{
+     state  = {[]};
+
+     componentDidMount(){
+         this.setState({
+            productos:[
+                {nombre:"Libro", precio:200},
+                {nombre:"Disco de musica", precio:100},
+                {nombre:"Instrumento musical", precio:800}
+            ]
+         });
+     }
+
+    render(){
+        return (
+            <div>
+                <Header titulo = "Nuestra tienda virtual"/>
+                <Productos productos={productos}/>
+                <Footer />
+            </div>
+        )
+    }
+}
+
+export default PrimerComponente;
+```
