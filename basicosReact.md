@@ -211,10 +211,14 @@ Header.js
 
 ``` JavaScript
 const Header = () => (
-    <header>
-        <h1>Bienvenido a la tienda virtual</h1>
-    </header>
+    return (
+        <header>
+            <h1>Bienvenido a la tienda virtual</h1>
+        </header>
+    );
 );
+
+export default Header;
 ```
 
 Productos.js
@@ -241,9 +245,108 @@ export default PrimerComponente;
 
 ``` JavaScript
 const Footer = () => (
-    <footer>
-        <p>Todos los derechos reservados &copy;</p>
-    </footer>
+    return (
+        <footer>
+            <p>Todos los derechos reservados &copy;</p>
+        </footer>
+    );
 );
+
+export default Footer;
+```
+
+## Propr o propiedades en react
+
+Los cambios, como por ejemplo los cambios que pueden generar un llamado AJAx generalmente se guardan en el state o en los props.
+
+La forma en que los datos se comunican entre los props deben de ser de padre a hijos, como lo muestra el siguiente ejemplo.
+
+App.js
+
+``` JavaScript
+import React from 'react';
+import Header from './Header';
+import Productos from './Productos';
+import Footer from './Footer';
+
+class App extends React.Component{
+    render(){
+        const productos = [
+            {nombre:"Libro", precio:200},
+            {nombre:"Disco de musica", precio:100},
+            {nombre:"Instrumento musical", precio:800}
+        ];
+        return (
+            <div>
+                <Header titulo = "Nuestra tienda virtual"/>
+                <Productos productos={productos}/>
+                <Footer />
+            </div>
+        )
+    }
+}
+
+export default PrimerComponente;
+```
+
+Header.js
+
+``` JavaScript
+const Header = (props) => (
+    return (
+        <header>
+            <h1>Bienvenido a {props.titulo}</h1>
+        </header>
+    );
+);
+
+export default Header;
+```
+
+Productos.js
+
+``` JavaScript
+import React from 'react';
+import Producto from 'Producto';
+
+class Productos extends React.Component{
+    render(){
+        return (
+            <div>
+                <h2>Listado de productos</h2>
+                {Object.keys(this.props.productos).map(key=>(
+                    <Producto 
+                        key={key}
+                        producto = {this.props.productos[key]}
+                    />
+                ))}
+            </div>
+        )
+    }
+}
+
+export default Productos;
+```
+
+**Nota: Los datos que son repetitivos con en este caso los son los productos, se repite siempre un producto, la estrategia correcta seria crear un componente para imprimir cada porducto en un componente nuevo**
+
+Producto.js
+
+``` JavaScript
+import React from 'react';
+
+class Producto extends React.Component{
+    render(){
+        const {nombre, precio} = this.props.producto;
+        return (
+            <div>
+                <h2>{nombre}<h2>
+                <p>precio: {precio}<p>
+            </div>
+        )
+    }
+}
+
+export default Producto;
 ```
 
